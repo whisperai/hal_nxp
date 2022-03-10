@@ -113,10 +113,11 @@ typedef enum _osa_status
 #define OSA_MUTEX_HANDLE_SIZE (4U)
 #define OSA_MSGQ_HANDLE_SIZE  (4U)
 #define OSA_MSG_HANDLE_SIZE   (0U)
-#elif defined(SDK_OS_ZEPHYR)
+#elif defined(__ZEPHYR__)
 #define USE_RTOS (1)
 #include <kernel.h>
 #define OSA_MUTEX_HANDLE_SIZE sizeof(struct k_mutex)
+#define OSA_SEM_HANDLE_SIZE sizeof(struct k_sem)
 #elif defined(SDK_OS_UCOSII)
 #define USE_RTOS (1)
 #elif defined(SDK_OS_UCOSIII)
@@ -354,7 +355,7 @@ typedef enum _osa_status
 
 #if defined(SDK_OS_FREE_RTOS)
 #include "fsl_os_abstraction_free_rtos.h"
-#elif defined(SDK_OS_ZEPHYR)
+#elif defined(__ZEPHYR__)
 #include "fsl_os_abstraction_zephyr.h"
 #elif defined(FSL_RTOS_THREADX)
 #include "fsl_os_abstraction_threadx.h"

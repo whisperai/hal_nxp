@@ -138,9 +138,11 @@ include_driver_ifdef(CONFIG_MCUX_LPTMR_TIMER		lptmr		driver_lptmr)
 
 if(CONFIG_EMMC_USDHC)
   list(APPEND CMAKE_MODULE_PATH
+      ${CMAKE_CURRENT_LIST_DIR}/mcux-sdk/components/lists
+      ${CMAKE_CURRENT_LIST_DIR}/mcux-sdk/components/osa
+      ${CMAKE_CURRENT_LIST_DIR}/mcux-sdk/drivers/usdhc
       ${CMAKE_CURRENT_LIST_DIR}/mcux-sdk/middleware/sdmmc
   )
-  zephyr_include_directories(${CMAKE_CURRENT_LIST_DIR}/mcux-sdk/middleware/sdmmc)
   include(middleware_sdmmc_mmc)
   include(middleware_sdmmc_host_usdhc_zephyr)
 endif()

@@ -1,6 +1,8 @@
 #include "fsl_os_abstraction.h"
 #include "fsl_os_abstraction_zephyr.h"
 
+#include <kernel.h>
+
 /*FUNCTION**********************************************************************
 *
 * Function Name : OSA_MutexCreate
