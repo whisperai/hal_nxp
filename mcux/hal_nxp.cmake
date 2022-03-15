@@ -136,6 +136,17 @@ include_driver_ifdef(CONFIG_COUNTER_MCUX_SNVS_SRTC	snvs_lp		driver_snvs_lp)
 include_driver_ifdef(CONFIG_COUNTER_MCUX_LPTMR		lptmr		driver_lptmr)
 include_driver_ifdef(CONFIG_MCUX_LPTMR_TIMER		lptmr		driver_lptmr)
 
+if(CONFIG_EMMC_USDHC)
+  list(APPEND CMAKE_MODULE_PATH
+      ${CMAKE_CURRENT_LIST_DIR}/mcux-sdk/components/lists
+      ${CMAKE_CURRENT_LIST_DIR}/mcux-sdk/components/osa
+      ${CMAKE_CURRENT_LIST_DIR}/mcux-sdk/drivers/usdhc
+      ${CMAKE_CURRENT_LIST_DIR}/mcux-sdk/middleware/sdmmc
+  )
+  include(middleware_sdmmc_mmc)
+  include(middleware_sdmmc_host_usdhc_zephyr)
+endif()
+
 if ((${MCUX_DEVICE} MATCHES "MIMXRT1[0-9][0-9][0-9]") AND (NOT (CONFIG_SOC_MIMXRT1166_CM4 OR CONFIG_SOC_MIMXRT1176_CM4)))
   include_driver_ifdef(CONFIG_HAS_MCUX_CACHE		cache/armv7-m7	driver_cache_armv7_m7)
 elseif(${MCUX_DEVICE} MATCHES "MIMXRT(5|6)")
