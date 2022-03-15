@@ -141,6 +141,17 @@ include_driver_ifdef(CONFIG_MIPI_DSI_MCUX		mipi_dsi_split	driver_mipi_dsi_split)
 include_driver_ifdef(CONFIG_ADC_LPC_ADC			lpc_adc		driver_lpc_adc)
 include_driver_ifdef(CONFIG_MCUX_SDIF			sdif		driver_sdif)
 
+if(CONFIG_EMMC_USDHC)
+  list(APPEND CMAKE_MODULE_PATH
+      ${CMAKE_CURRENT_LIST_DIR}/mcux-sdk/components/lists
+      ${CMAKE_CURRENT_LIST_DIR}/mcux-sdk/components/osa
+      ${CMAKE_CURRENT_LIST_DIR}/mcux-sdk/drivers/usdhc
+      ${CMAKE_CURRENT_LIST_DIR}/mcux-sdk/middleware/sdmmc
+  )
+  include(middleware_sdmmc_mmc)
+  include(middleware_sdmmc_host_usdhc_zephyr)
+endif()
+
 if ((${MCUX_DEVICE} MATCHES "MIMXRT1[0-9][0-9][0-9]") AND (NOT (CONFIG_SOC_MIMXRT1166_CM4 OR CONFIG_SOC_MIMXRT1176_CM4)))
   include_driver_ifdef(CONFIG_HAS_MCUX_CACHE		cache/armv7-m7	driver_cache_armv7_m7)
 elseif(${MCUX_DEVICE} MATCHES "MIMXRT(5|6)")
