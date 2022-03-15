@@ -1,4 +1,4 @@
-#Description: Component osa_bm; user_visible: False
+#Description: Component osa_zephyr; user_visible: False
 include_guard(GLOBAL)
 message("component_osa_zephyr component is included.")
 
