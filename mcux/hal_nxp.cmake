@@ -141,7 +141,7 @@ if(CONFIG_EMMC_USDHC)
       ${CMAKE_CURRENT_LIST_DIR}/mcux-sdk/components/lists
       ${CMAKE_CURRENT_LIST_DIR}/mcux-sdk/components/osa
       ${CMAKE_CURRENT_LIST_DIR}/mcux-sdk/drivers/usdhc
-      ${CMAKE_CURRENT_LIST_DIR}/mcux-sdk/middleware/sdmmc
+      ${CMAKE_CURRENT_LIST_DIR}/../../../../middleware/sdmmc
   )
   include(middleware_sdmmc_mmc)
   include(middleware_sdmmc_host_usdhc_zephyr)
