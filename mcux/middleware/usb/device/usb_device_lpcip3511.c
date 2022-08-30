@@ -214,6 +214,8 @@ USB_CONTROLLER_DATA USB_RAM_ADDRESS_ALIGNMENT(256) static uint32_t
 
 #endif
 
+static uint32_t error_tracker[10];
+
 /*******************************************************************************
  * Code
  ******************************************************************************/
@@ -1606,6 +1608,7 @@ static usb_status_t USB_DeviceLpc3511IpGetActualBufferAndPrime(usb_device_lpc351
             )
 #endif
             {
+                error_tracker[2]++;
                 return kStatus_USB_Error;
             }
         }
@@ -1619,6 +1622,7 @@ static usb_status_t USB_DeviceLpc3511IpGetActualBufferAndPrime(usb_device_lpc351
     }
     else
     {
+        error_tracker[3]++;
         return kStatus_USB_Error;
     }
 }
@@ -1684,6 +1688,7 @@ static usb_status_t USB_DeviceLpc3511IpTransaction(usb_device_lpc3511ip_state_st
             epState->stateUnion.stateBitField.stallPrimed = 1u;
             status                                        = kStatus_USB_Success;
         }
+        error_tracker[1]++;
         status = kStatus_USB_Error;
         OSA_EXIT_CRITICAL();
         return status;
@@ -1747,6 +1752,7 @@ usb_status_t USB_DeviceLpc3511IpSend(usb_device_controller_handle controllerHand
 
     if (1U == epState->stateUnion.stateBitField.transferring)
     {
+        error_tracker[0]++;
         return kStatus_USB_Error;
     }
 
@@ -2330,6 +2336,11 @@ void USB_DeviceLpcIp3511IsrFunction(void *deviceHandle)
     {
     }
 #endif
+}
+
+uint32_t *USB_DeviceLpc3511GetErrorTracker(void)
+{
+  return error_tracker;
 }
 
 #endif

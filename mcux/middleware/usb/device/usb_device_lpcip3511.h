@@ -263,6 +263,11 @@ usb_status_t USB_DeviceLpc3511IpControl(usb_device_controller_handle controllerH
                                         usb_device_control_type_t type,
                                         void *param);
 
+/*
+ * get pointer to error tracker
+ */
+uint32_t *USB_DeviceLpc3511GetErrorTracker(void);
+
 /*! @} */
 
 #if defined(__cplusplus)
