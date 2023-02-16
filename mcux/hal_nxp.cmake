@@ -140,6 +140,7 @@ include_driver_ifdef(CONFIG_IMX_USDHC			usdhc		driver_usdhc)
 include_driver_ifdef(CONFIG_MIPI_DSI_MCUX		mipi_dsi_split	driver_mipi_dsi_split)
 include_driver_ifdef(CONFIG_ADC_LPC_ADC			lpc_adc		driver_lpc_adc)
 include_driver_ifdef(CONFIG_MCUX_SDIF			sdif		driver_sdif)
+include_driver_ifdef(CONFIG_DSP_POWERQUAD			powerquad		driver_powerquad)
 
 if(CONFIG_EMMC_USDHC)
   list(APPEND CMAKE_MODULE_PATH
